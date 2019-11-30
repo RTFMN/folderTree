@@ -20,7 +20,7 @@ const createRoot = json => {
   document.body.append(ul);
 
   let rootLi = document.createElement('li');
-  rootLi.innerHTML = `${root.title}<ul id=${root.id}></ul>`;
+  rootLi.innerHTML = `<span>${root.title}</span><ul id=${root.id}></ul>`;
   document.getElementById('tree').append(rootLi);
 }
 
@@ -28,7 +28,7 @@ const createFolder = folder => {
   let ul = document.getElementById(folder.parentId);
 
   let li = document.createElement('li');
-  li.innerHTML = `${folder.title}<ul id=${folder.id}></ul>`
+  li.innerHTML = `<span>${folder.title}</span><ul id=${folder.id}></ul>`
   ul.append(li);
 }
 

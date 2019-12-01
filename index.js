@@ -37,10 +37,6 @@ const searching = (data) => {
   let searchField = document.getElementById('searchField');
   
   renderTree(data);
-
-  const generateTree = id => {
-    
-  }
   
   searchField.addEventListener('keyup', () => {
     let tree = [];

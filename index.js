@@ -14,14 +14,15 @@ const findRoot = json => {
 const createRoot = json => {
   let root = findRoot(json);
 
-  let ul = document.createElement('ul');
-  ul.id = 'tree';
-  ul.className = 'tree';
-  document.body.append(ul);
-
-  let rootLi = document.createElement('li');
-  rootLi.innerHTML = `<span>${root.title}</span><ul id=${root.id}></ul>`;
-  document.getElementById('tree').append(rootLi);
+  if (root) {
+    let rootLi = document.createElement('li');
+    rootLi.innerHTML = `<span>${root.title}</span><ul id=${root.id}></ul>`;
+    document.getElementById('tree').append(rootLi);
+  } else {
+    let error = document.createElement('li');
+    error.innerHTML = `Ничего не найдено`;
+    document.getElementById('tree').append(error);
+  }
 }
 
 const createFolder = folder => {
@@ -32,7 +33,51 @@ const createFolder = folder => {
   ul.append(li);
 }
 
+const searching = (data) => {
+  let searchField = document.getElementById('searchField');
+  
+  renderTree(data);
+
+  const generateTree = id => {
+    
+  }
+  
+  searchField.addEventListener('keyup', () => {
+    let tree = [];
+    let searchRequest = searchField.value.toLowerCase();
+    console.log(searchRequest, typeof (searchRequest));
+    let id = [];
+    
+    const hasParent = (folder) => {
+      if (folder.parentId) {
+        if (!id.includes(folder.parentId)) {
+          id.push(folder.parentId);
+          let parent = data.find(elem => elem.id === folder.parentId);
+          hasParent(parent);
+        }
+      }
+    }
+
+    data.forEach(element => {
+      if (element.title.toLowerCase().includes(searchRequest)) {
+        if (!id.includes(element.id)) {
+          id.push(element.id);
+          console.log(`Элемент ${element.title} имеет в имени ${searchRequest}`);
+        }
+        hasParent(element);
+      }
+    });
+
+    id.forEach(element => {
+      tree.push(data.find(elem => elem.id === element));
+    });
+    
+    renderTree(tree);
+  })
+}
+
 const renderTree = json => {
+  document.getElementById('tree').innerHTML = '';
   sortJsonById(json);
   createRoot(json);
 
@@ -46,7 +91,7 @@ const renderTree = json => {
 const getFolderTree = () => {
   return fetch('https://raw.githubusercontent.com/wrike/frontend-test/master/data.json')
     .then(res => res.json())
-    .then(data => renderTree(data))
+    .then(data => searching(data))
 }
 
 window.onload = getFolderTree();

@@ -1,18 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>FolderTree</title>
-  <link rel="stylesheet" href="index.css">
 </head>
+
 <body>
+
+  <!-- Search Form START -->
   <form action="#">
-    <input id="searchField" type="text" placeholder="search">
+    <input id="searchForm" type="text" placeholder="search">
   </form>
-  <ul id="tree"></ul>
-  <script src="index.js"></script>
-  <script src="folding.js"></script>
+  <!-- Search Form STOP -->
+
+  <!-- Tree START -->
+  <ul id="tree">
+    <!-- Here will be tree rendered -->
+  </ul>
+  <!-- Tree STOP -->
+
+  <script src="bundle.js" defer></script>
 </body>
+
 </html>

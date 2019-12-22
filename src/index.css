@@ -2,6 +2,26 @@ ul#tree {
   padding: 0;
 }
 
-ul#tree li {
+li {
   list-style-type: none;
+  cursor: pointer;
+}
+
+li::before{
+  font-size: 10px;
+  content: '▼';
+  margin-right: 5px;
+  vertical-align: 10%;
+}
+
+li.folded::before{
+  content: '►';
+}
+
+#searchForm {
+  border: solid 1px;
+  border-color: darkgray;
+  border-radius: 5px;
+  height: 20px;
+  padding-left: 5px;
 }

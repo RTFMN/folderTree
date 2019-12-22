@@ -1,9 +1,26 @@
 import css from './index.css';
+import {folding} from './Folding';
 
-import fetchTree from './FetchTree';
+import {getTree} from './GetTree';
+import {search} from './Search';
+import {makeTree} from './MakeTree';
+import {sortTree} from './SortTree';
+import {drawTree} from './DrawTree';
 
-const treeUrl = 'https://raw.githubusercontent.com/wrike/frontend-test/master/data.json';
+function renderTree() {
+  getTree()
+    .then(array => search(array))
+    .then(array => makeTree(array))
+    .then(tree => sortTree(tree))
+    .then(tree => drawTree(tree))
+}
+  
+document.getElementById('searchForm').addEventListener('keyup', () => {
+  renderTree();
+})
 
-const tree = fetchTree(treeUrl);
+// someSortButton.addEventListener('click', () => {
+//   renderTree()
+// });
 
-console.log(tree);
+renderTree();

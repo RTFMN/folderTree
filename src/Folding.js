@@ -7,4 +7,6 @@ window.onclick = function (event) {
   if (!childrenContainer) return;
 
   childrenContainer.hidden = !childrenContainer.hidden;
+  if (childrenContainer.hidden) childrenContainer.parentNode.className = "folded";
+  else childrenContainer.parentNode.className = "";
 }

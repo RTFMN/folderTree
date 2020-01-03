@@ -10,8 +10,8 @@ export function search(tree) {
     if (element.title.toLowerCase().includes(searchRequest)) {
       if (!id.includes(element.id)) {
         id.push(element.id);
+        pushParents(element);
       }
-      pushParents(element);
     }
   });
 
@@ -33,5 +33,5 @@ export function search(tree) {
     return b.id - a.id;
   }
 
-  return searchResult.sort(sortingById);
+  return searchResult.sort(sortingById)||[{id:-1,title:'Nothing Founded',parentId:null,}];
 }

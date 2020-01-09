@@ -37,4 +37,5 @@ export function getTree() {
   return getArray()
     .then(array => search(array))
     .then(array => makeTree(array))
+    .then(tree => sortTree(tree))
 }

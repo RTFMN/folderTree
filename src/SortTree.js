@@ -1,4 +1,14 @@
-export function sortTree(tree, method) {
+let sortMethod = 'sortIncr';
+
+function setSortMethodIncr(){
+  sortMethod = 'sortIncr';
+}
+
+function setSortMethodDecr(){
+  sortMethod = 'sortDecr';
+}
+
+function sortTree(tree, method = sortMethod) {
   let sorting = method == 'sortIncr' ? sortIncr : sortDecr;
 
   if (tree.children) {
@@ -36,3 +46,5 @@ function sortDecr(a, b) {
   }
   return 0;
 }
+
+export {setSortMethodIncr ,setSortMethodDecr, sortTree};

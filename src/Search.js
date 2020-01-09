@@ -25,13 +25,18 @@ export function search(tree) {
     }
   }
 
-  id.forEach(element => {
-    searchResult.push(tree.find(elem => elem.id === element));
-  });
+  if( id.length>0){
+    id.forEach(element => {
+      searchResult.push(tree.find(elem => elem.id === element));
+    });
+  } else {
+    let nothingFound = {id:-1,title:'Nothing Found',parentId:null};
+    searchResult.push(nothingFound);
+  }
 
   function sortingById(a, b) {
     return b.id - a.id;
   }
 
-  return searchResult.sort(sortingById)||[{id:-1,title:'Nothing Founded',parentId:null,}];
+  return searchResult.sort(sortingById);
 }

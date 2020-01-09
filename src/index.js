@@ -9,17 +9,11 @@ import {
   drawTree
 } from './DrawTree';
 import {
-  sortTree
+  setSortMethodIncr, setSortMethodDecr
 } from './SortTree';
 
 function renderTree() {
   getTree()
-    .then(tree => drawTree(tree))
-}
-
-function sort(method) {
-  getTree()
-    .then(tree => sortTree(tree, method))
     .then(tree => drawTree(tree))
 }
 
@@ -28,13 +22,13 @@ document.getElementById('searchForm').addEventListener('keyup', () => {
 })
 
 document.getElementById('sortIncr').addEventListener('click', () => {
-  sort('sortIncr');
-  console.log(1)
+  setSortMethodIncr();
+  renderTree();
 })
 
 document.getElementById('sortDecr').addEventListener('click', () => {
-  sort('sortDecr');
-  console.log(2)
+  setSortMethodDecr();
+  renderTree();
 })
 
 renderTree();
